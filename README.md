@@ -13,7 +13,7 @@ Ensure you have Python and Flask installed on your machine.
 ### Installation and Running the application
 
 1. Clone this repo
-2. cd <project-name>
+2. cd project-name
 3. create a virtual env: python3 -m venv venv
 4. for windows use: venv\Scripts\activate and for mac: source venv/bin/activate
 5. To run the project: python -m flask --app board run
