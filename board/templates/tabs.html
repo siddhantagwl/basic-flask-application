@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabs Example</title>
+    <style>
+      .tabs {
+        display: flex;
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+      .tab {
+        margin-right: 10px;
+        padding: 10px;
+        background: lightgray;
+        border-radius: 5px;
+      }
+      .tab.active {
+        background: gray;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Tabs Example</h1>
+    <div class="tabs">
+      <div
+        class="tab {% if tab == 'tab1' %}active{% endif %}"
+        onclick="window.location.href='{{ url_for('views.tabs', tab='tab1') }}'"
+      >
+        Tab 1
+      </div>
+      <div
+        class="tab {% if tab == 'tab2' %}active{% endif %}"
+        onclick="window.location.href='{{ url_for('views.tabs', tab='tab2') }}'"
+      >
+        Tab 2
+      </div>
+    </div>
+
+    <ul>
+      {% for item in items %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
