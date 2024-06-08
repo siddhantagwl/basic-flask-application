@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tabs Example</title>
+    <title>Multiple Tabs Example</title>
     <style>
       .tabs {
         display: flex;
@@ -17,23 +17,42 @@
         border-radius: 5px;
       }
       .tab.active {
-        background: gray;
+        background: green;
+        color: white;
+      }
+      .pagination {
+        display: flex;
+        list-style: none;
+        padding: 0;
+      }
+      .pagination li {
+        margin: 0 5px;
+      }
+      .pagination a {
+        text-decoration: none;
+        padding: 5px 10px;
+        background: lightgray;
+        border-radius: 5px;
+      }
+      .pagination a.active {
+        background: blue;
         color: white;
       }
     </style>
   </head>
   <body>
-    <h1>Tabs Example</h1>
+    <h1>Multiple Tabs Example with pagination</h1>
     <div class="tabs">
       <div
         class="tab {% if tab == 'tab1' %}active{% endif %}"
-        onclick="window.location.href='{{ url_for('views.tabs', tab='tab1') }}'"
+        onclick="window.location.href='{{ url_for('views.tabs', tab='tab1', page=1) }}'"
       >
         Tab 1
       </div>
+
       <div
         class="tab {% if tab == 'tab2' %}active{% endif %}"
-        onclick="window.location.href='{{ url_for('views.tabs', tab='tab2') }}'"
+        onclick="window.location.href='{{ url_for('views.tabs', tab='tab2', page=1) }}'"
       >
         Tab 2
       </div>
@@ -42,6 +61,18 @@
     <ul>
       {% for item in items %}
       <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+
+    <ul class="pagination">
+      {% for p in range(1, total_pages + 1) %}
+      <li>
+        <a
+          href="{{ url_for('views.tabs', tab=tab, page=p) }}"
+          class="{% if p == page %}active{% endif %}"
+          >{{ p }}</a
+        >
+      </li>
       {% endfor %}
     </ul>
   </body>
